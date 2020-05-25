@@ -10,9 +10,16 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+  {
+    path: '/discover',
+    name: 'Discover',
+    component: () => import('@/views/Discover.vue'),
+  },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes,
 });
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <appHeader></appHeader>
+    <Header></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -9,11 +9,21 @@
 </style>
 
 <script>
-import header from './components/header.vue';
+import Header from '@/components/Header.vue';
 
 export default {
   components: {
-    appHeader: header,
+    Header,
+  },
+  mounted() {
+    document.addEventListener('mousedown', (e) => {
+      const root = document.documentElement;
+      const element = e.target;
+      const x = (e.clientX - element.offsetLeft) / element.offsetWidth;
+      const y = (e.clientY - element.offsetTop) / element.offsetHeight;
+      root.style.setProperty('--rippleX', x);
+      root.style.setProperty('--rippleY', y);
+    });
   },
 };
 </script>

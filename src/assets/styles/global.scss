@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;500;700&display=swap');
+
+@import "reset.scss";
+@import "vars.scss";
+@import "buttons.scss";
+
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+.link-waves {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--default-c);
+  cursor: pointer;
+  overflow: hidden;
+  transition: color .2s linear;
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: var(--bgc-one);
+    padding: 50%;
+    border-radius: 50%;
+    top: calc(100% * var(--rippleY));
+    left: calc(100% * var(--rippleX));
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform .75s, opacity .75s linear;
+  }
+  &:active::before {
+    transition: 0s;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  &:hover {
+    color: var(--bgc-one);
+  }
+  &.router-link-exact-active {
+    color: var(--bgc-one);
+  }
+}
