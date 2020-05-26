@@ -1,71 +1,64 @@
 <template>
-  <div>
-    <section class="discover">
-      <div class="wrapper">
-        <div class="content">
-          <div class="post">
-            <div class="post__cover">
-              <div class="post__cover-center">
-                <span>A</span>
-              </div>
-              <div class="post__more">City: City</div>
-            </div>
-            <div class="post__meta">
-              <h4 class="post__meta-title">Beer</h4>
-              <span class="post__meta-type">Type</span>
-            </div>
-          </div>
-          <!-- close .post -->
-        </div>
+  <section class="discover">
+    <div class="wrapper">
+      <Loader v-if="loading"></Loader>
+      <div v-else class="content">
+        <Post
+          v-for="(item, index) of allData"
+          v-bind:key="item.key"
+          v-bind:item="item"
+          v-bind:idx="index"
+        ></Post>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
-export default {
+import Post from '@/components/Post.vue';
+import Loader from '@/components/Loader.vue';
+import { mapGetters, mapActions } from 'vuex';
 
+export default {
+  name: 'discover',
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  computed: {
+    ...mapGetters(['allData']),
+  },
+  methods: {
+    ...mapActions(['getData']),
+  },
+  async mounted() {
+    this.getData(50);
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  },
+  components: {
+    Post,
+    Loader,
+  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .discover {
-  padding-top: 60px;
+  min-height: 100vh;
+  position: relative;
+  padding: 60px 0px;
+  z-index: -1;
+  background-color: var(--bgc-two);
 }
 
 .content {
   margin-top: 40px;
-}
-
-.post {
-  width: 200px;
-  height: auto;
-  &__cover {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-color: var(--neutral-placeholder);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    &-center {
-      // flex-grow: 1;
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  &__more {
-    padding: 10px 0px;
-  }
-  &__meta {
-    margin-top: 10px;
-    font-weight: 300;
-  }
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  grid-row-gap: 20px;
 }
 </style>

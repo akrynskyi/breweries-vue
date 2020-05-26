@@ -4,10 +4,12 @@
       <div class="header__title">Breweries</div>
       <nav class="navigation">
         <div class="navigation__link">
-          <router-link to="/" class="link-waves">Home</router-link>
+          <router-link to="/discover" class="link-waves" title="discover">Discover</router-link>
         </div>
         <div class="navigation__link">
-          <router-link to="/discover" class="link-waves">Discover</router-link>
+          <router-link to="/" class="link-waves" title="home">
+            <i class="fas fa-arrow-right"></i>
+          </router-link>
         </div>
       </nav>
     </div>
@@ -23,10 +25,12 @@
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: var(--bgc-five);
+  // background-color: #4d93b2;
+  background-color: #697853;
   box-shadow:
     0 1.9px 2.1px rgba(0, 0, 0, 0.053),
-    0 4.7px 3px rgba(0, 0, 0, 0.077), 0 10.3px 6.8px rgba(0, 0, 0, 0.093),
+    0 4.7px 3px rgba(0, 0, 0, 0.077),
+    0 10.3px 6.8px rgba(0, 0, 0, 0.093),
     0 30px 80px rgba(0, 0, 0, 0.1)
   ;
 
