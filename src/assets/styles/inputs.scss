@@ -1,0 +1,41 @@
+.input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--default-c);
+  position: relative;
+  &__input {
+    width: 100%;
+    color: var(--default-c);
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    padding: 10px 0px;
+
+    &:focus + .input-group__placeholder::before {
+      top: -5px;
+    }
+  }
+
+  &__placeholder::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--neutral-secondary);
+    transform: translateY(-50%);
+    transition: top .2s linear;
+    z-index: 1;
+  }
+
+  &.focus > &__placeholder::before {
+    top: -5px;
+  }
+
+  & > i {
+    font-size: 14px;
+    color: var(--neutral-secondary);
+  }
+}

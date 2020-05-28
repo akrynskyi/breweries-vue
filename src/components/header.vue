@@ -33,6 +33,7 @@
     0 10.3px 6.8px rgba(0, 0, 0, 0.093),
     0 30px 80px rgba(0, 0, 0, 0.1)
   ;
+  z-index: 20;
 
   &-wrapper {
     height: 100%;
@@ -48,6 +49,7 @@
     letter-spacing: .1em;
   }
 }
+
 .navigation {
   height: 100%;
   display: flex;

@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <div class="post__cover">
+    <div class="post__cover" v-bind:class="{active: item.filtered}">
       <div class="post__cover-center">
         <span>{{ item.name.charAt(0) }}</span>
       </div>
@@ -35,6 +35,9 @@ export default {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    &.active {
+      border: 1px solid var(--default-c);
+    }
     &-center {
       position: absolute;
       height: 100%;
