@@ -15,6 +15,11 @@ const routes = [
     name: 'Discover',
     component: () => import('@/views/Discover.vue'),
   },
+  {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: () => import('@/views/Detail.vue'),
+  },
 ];
 
 const router = new VueRouter({

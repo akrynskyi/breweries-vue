@@ -1,6 +1,10 @@
 <template>
   <div class="post">
-    <div class="post__cover" v-bind:class="{active: item.filtered}">
+    <div
+      class="post__cover"
+      :class="{active: item.filtered}"
+      @click="$router.push(`/detail/${item.id}`)"
+    >
       <div class="post__cover-center">
         <span>{{ item.name.charAt(0) }}</span>
       </div>

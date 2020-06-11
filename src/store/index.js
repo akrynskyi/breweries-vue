@@ -22,15 +22,6 @@ export default new Vuex.Store({
       const data = await response.json();
       commit('updateBreweries', data);
     },
-    // searchInData({ commit, state }, value) {
-    //   if (!value.trim()) {
-    //     commit('updateDataToDisplay', state.breweries);
-    //   } else {
-    //     const result = state.dataToDisplay
-    //       .filter((item) => item.name.toLowerCase().includes(value));
-    //     commit('updateDataToDisplay', result);
-    //   }
-    // },
   },
   getters: {
     allData(state) {

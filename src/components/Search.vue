@@ -20,21 +20,11 @@ export default {
   computed: {
     ...mapGetters(['allData']),
   },
-  // watch: {
-  //   value() {
-  //     this.$refs.search.focus();
-  //   },
-  // },
   methods: {
     ...mapMutations(['updateSearchString']),
     search() {
-      // const value = e.target.value.toLowerCase();
-      // this.searchInData(value);
       this.updateSearchString(this.value.toLowerCase().trim());
     },
-  },
-  mounted() {
-
   },
 };
 </script>
