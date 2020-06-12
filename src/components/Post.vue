@@ -3,7 +3,7 @@
     <div
       class="post__cover"
       :class="{active: item.filtered}"
-      @click="$router.push(`/detail/${item.id}`)"
+      @click="$router.push(`/detail/${name}/${item.id}`)"
     >
       <div class="post__cover-center">
         <span>{{ item.name.charAt(0) }}</span>
@@ -23,6 +23,11 @@
 <script>
 export default {
   props: ['item', 'idx'],
+  data() {
+    return {
+      name: this.item.name.trim().replace('/', '-'),
+    };
+  },
 };
 </script>>
 

@@ -16,14 +16,14 @@ export default {
     Header,
   },
   mounted() {
-    document.addEventListener('mousedown', (e) => {
-      const root = document.documentElement;
-      const element = e.target;
-      const x = (e.clientX - element.offsetLeft) / element.offsetWidth;
-      const y = (e.clientY - element.offsetTop) / element.offsetHeight;
-      root.style.setProperty('--rippleX', x);
-      root.style.setProperty('--rippleY', y);
-    });
+    // document.addEventListener('mousedown', (e) => {
+    //   const root = document.documentElement;
+    //   const element = e.target;
+    //   const x = (e.clientX - element.offsetLeft) / element.offsetWidth;
+    //   const y = (e.clientY - element.offsetTop) / element.offsetHeight;
+    //   root.style.setProperty('--rippleX', x);
+    //   root.style.setProperty('--rippleY', y);
+    // });
   },
 };
 </script>

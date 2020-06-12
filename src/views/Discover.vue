@@ -24,10 +24,11 @@
 import Post from '@/components/Post.vue';
 import Loader from '@/components/Loader.vue';
 import Search from '@/components/Search.vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'discover',
+  title: 'Breweries - Discover',
   data: () => ({
     loading: true,
   }),
@@ -48,12 +49,16 @@ export default {
   },
   methods: {
     ...mapActions(['getData']),
+    ...mapMutations(['updateSearchString']),
   },
   async mounted() {
     this.getData(50);
     setTimeout(() => {
       this.loading = false;
     }, 2000);
+  },
+  destroyed() {
+    this.updateSearchString('');
   },
   components: {
     Post,

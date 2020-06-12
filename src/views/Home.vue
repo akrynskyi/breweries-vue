@@ -10,5 +10,6 @@
 <script>
 export default {
   name: 'home',
+  title: 'Breweries - Home',
 };
 </script>

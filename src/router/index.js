@@ -8,15 +8,17 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: { title: 'Breweries - Home' },
     component: Home,
   },
   {
     path: '/discover',
     name: 'Discover',
+    meta: { title: 'Breweries - Discover' },
     component: () => import('@/views/Discover.vue'),
   },
   {
-    path: '/detail/:id',
+    path: '/detail/:name/:id',
     name: 'Detail',
     component: () => import('@/views/Detail.vue'),
   },
@@ -27,5 +29,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+// router.afterEach((to) => {
+//   Vue.nextTick(() => {
+//     document.title = to.meta.title || 'Breweries';
+//   });
+// });
 
 export default router;

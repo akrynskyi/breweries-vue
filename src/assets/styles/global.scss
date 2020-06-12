@@ -36,8 +36,10 @@ body {
     background-color: var(--bgc-one);
     padding: 50%;
     border-radius: 50%;
-    top: calc(100% * var(--rippleY));
-    left: calc(100% * var(--rippleX));
+    // top: calc(100% * var(--rippleY));
+    // left: calc(100% * var(--rippleX));
+    top: 50%;
+    left: 50%;
     opacity: 0;
     transform: translate(-50%, -50%) scale(1);
     transition: transform .75s, opacity .75s linear;
