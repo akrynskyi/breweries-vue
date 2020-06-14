@@ -1,9 +1,17 @@
 <template>
   <div class="search">
-    <div class="input-group" v-bind:class="{focus: value}">
-      <input type="text" class="input-group__input" @input="search()" v-model="value" />
+    <div
+      class="input-group"
+      v-bind:class="{focus: value}"
+    >
+      <input
+        type="text"
+        class="input-group__input"
+        @input="search()"
+        v-model="value"
+      />
       <span class="input-group__placeholder" data-placeholder="Filter by name"></span>
-      <span class="results-count">{{resultsNum}}/{{allData.length}}</span>
+      <span class="results-count">{{count}}/{{data.length}}</span>
       <i class="fas fa-search"></i>
     </div>
   </div>
@@ -13,12 +21,13 @@
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
-  props: ['resultsNum'],
+  props: ['count'],
+
   data: () => ({
     value: '',
   }),
   computed: {
-    ...mapGetters(['allData']),
+    ...mapGetters(['data']),
   },
   methods: {
     ...mapMutations(['updateSearchString']),
@@ -34,6 +43,7 @@ export default {
   width: 100%;
   padding: 40px 25px;
 }
+
 .results-count {
   margin-right: 15px;
   font-weight: 300;

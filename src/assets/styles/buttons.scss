@@ -10,11 +10,9 @@
   &::before {
     content: "";
     position: absolute;
-    background-color: var(--bgc-one);
+    background-color: var(--default-c);
     padding: 50%;
     border-radius: 50%;
-    // top: calc(100% * var(--rippleY));
-    // left: calc(100% * var(--rippleX));
     top: 50%;
     left: 50%;
     opacity: 0;

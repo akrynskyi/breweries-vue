@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    allData(state) {
+    data(state) {
       return state.breweries;
     },
     searchTerm(state) {

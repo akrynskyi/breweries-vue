@@ -10,6 +10,7 @@
 
 <style lang="scss" scoped>
 @import "../../node_modules/loaders.css/src/animations/ball-scale-ripple-multiple.scss";
+
 .loader-overlay {
   position: fixed;
   top: 0;
@@ -20,6 +21,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .ball-scale-ripple-multiple > div {
   border: 2px solid var(--default-c);
 }

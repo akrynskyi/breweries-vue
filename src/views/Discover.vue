@@ -1,9 +1,9 @@
 <template>
-  <section class="discover">
+  <section class="discover view">
     <div class="wrapper">
       <Loader v-if="loading"></Loader>
       <main v-else>
-        <Search v-bind:resultsNum="countSearchResuts"></Search>
+        <Search :count="countSearchResults"></Search>
         <div class="content" v-if="filterData.length">
           <Post
             v-for="(item, index) of filterData"
@@ -29,22 +29,23 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
   name: 'discover',
   title: 'Breweries - Discover',
+
   data: () => ({
     loading: true,
   }),
   computed: {
-    ...mapGetters(['allData', 'searchTerm']),
+    ...mapGetters(['data', 'searchTerm']),
     filterData() {
-      return this.allData
-        .map((item) => {
-          if (item.name.toLowerCase().includes(this.searchTerm) && this.searchTerm !== '') {
-            return { ...item, filtered: true };
-          }
-          return item;
-        });
+      return this.data.map((item) => {
+        const n = item.name.toLowerCase();
+        if (n.includes(this.searchTerm) && this.searchTerm) {
+          return { ...item, match: true };
+        }
+        return item;
+      });
     },
-    countSearchResuts() {
-      return this.filterData.reduce((total, current) => (current.filtered ? total + 1 : total), 0);
+    countSearchResults() {
+      return this.filterData.reduce((total, current) => (current.match ? total + 1 : total), 0);
     },
   },
   methods: {
@@ -52,12 +53,10 @@ export default {
     ...mapMutations(['updateSearchString']),
   },
   async mounted() {
-    this.getData(50);
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+    await this.getData(50);
+    this.loading = false;
   },
-  destroyed() {
+  beforeDestroy() {
     this.updateSearchString('');
   },
   components: {
@@ -70,17 +69,16 @@ export default {
 
 <style lang="scss" scoped>
 .discover {
-  min-height: 100vh;
-  margin-top: 60px;
   padding-bottom: 60px;
-  background-color: var(--bgc-two);
 }
+
 .content {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   grid-row-gap: 20px;
 }
+
 .placeholder {
   display: flex;
   justify-content: center;
