@@ -3,8 +3,15 @@
     <div class="wrapper">
       <Loader v-if="loading"></Loader>
       <main v-else>
-        <Search :count="countSearchResults"></Search>
-        <div class="content" v-if="filterData.length">
+        <Search
+          :count="countSearchResults"
+          :intersect="intersect"
+        ></Search>
+        <div
+          class="content"
+          v-if="filterData.length"
+          ref="discoverContent"
+        >
           <Post
             v-for="(item, index) of filterData"
             v-bind:key="item.key"
@@ -32,7 +39,10 @@ export default {
 
   data: () => ({
     loading: true,
+    observer: null,
+    intersect: false,
   }),
+
   computed: {
     ...mapGetters(['data', 'searchTerm']),
     filterData() {
@@ -48,17 +58,39 @@ export default {
       return this.filterData.reduce((total, current) => (current.match ? total + 1 : total), 0);
     },
   },
+
   methods: {
     ...mapActions(['getData']),
     ...mapMutations(['updateSearchString']),
+
+    intersectionObs() {
+      const options = {
+        rootMargin: '0px 0px -600px 0px',
+      };
+
+      this.observer = new IntersectionObserver(([entry]) => {
+        if (entry && entry.isIntersecting) {
+          this.intersect = true;
+        } else {
+          this.intersect = false;
+        }
+      }, options);
+
+      this.observer.observe(this.$refs.discoverContent);
+    },
   },
+
   async mounted() {
     await this.getData(50);
     this.loading = false;
+    setTimeout(() => this.intersectionObs(), 0);
   },
+
   beforeDestroy() {
     this.updateSearchString('');
+    this.observer.disconnect();
   },
+
   components: {
     Post,
     Loader,

@@ -1,19 +1,23 @@
 <template>
   <section class="home view">
-    <div class="wrapper">
-      <div class="container">
-        <div class="side side-text">
-          <div class="text-group">
-            <h1>Brew Collection</h1>
-            <button>Discover now</button>
+    <div class="hero">
+      <div class="wrapper container">
+          <div class="side side-text">
+            <div class="group">
+              <h1>Brew Collection</h1>
+              <button
+                class="btn-underlined gap-top"
+                @click="$router.push('/discover')"
+              >
+                Discover now
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="side side-picture">
-          <img src="../assets/images/side.jpg" alt="side">
-        </div>
       </div>
-      <div class="container">
-        <h1>next</h1>
+    </div>
+    <div class="info">
+      <div class="side-picture left">
+        <!-- <img src="@/assets/images/side-1.jpg" alt="side-picture"> -->
       </div>
     </div>
   </section>
@@ -32,8 +36,20 @@ export default {
     height: calc(100vh - 60px);
   }
 
+  .info {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background-image: url('../assets/images/side-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   .side {
-    width: 50%;
+    width: 100%;
     height: 100%;
 
     &.side-text {
@@ -42,27 +58,32 @@ export default {
       justify-content: center;
     }
 
-    &.side-picture {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 1;
-
-      & > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .group > h1 {
+      font-size: 149px;
+      text-indent: -8px;
+      color: var(--default-c);
     }
   }
 
-  .text-group {
+  .side-picture {
     position: absolute;
-    z-index: 5;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
 
-    & > h1 {
-      font-size: 149px;
-      color: var(--default-c);
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
     }
   }
 </style>

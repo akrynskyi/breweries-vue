@@ -26,7 +26,7 @@ export default {
 
   data() {
     return {
-      name: this.item.name.trim().replace('/', '-'),
+      name: this.item.name.trim().replace('/', '|'),
     };
   },
 };
@@ -46,6 +46,7 @@ export default {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    cursor: pointer;
 
     &.active {
       border: 1px solid var(--default-c);

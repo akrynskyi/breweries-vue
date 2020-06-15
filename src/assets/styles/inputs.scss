@@ -3,6 +3,15 @@
   align-items: center;
   border-bottom: 1px solid var(--default-c);
   position: relative;
+
+  &.fixed {
+    border-bottom: 1px solid var(--neutral-secondary);
+
+    & > input {
+      color: var(--neutral-main);
+    }
+  }
+
   &__input {
     width: 100%;
     color: var(--default-c);

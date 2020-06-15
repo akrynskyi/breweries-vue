@@ -1,8 +1,11 @@
 <template>
-  <div class="search">
+  <div
+    class="search"
+    :class="{fixed: intersect}"
+  >
     <div
       class="input-group"
-      v-bind:class="{focus: value}"
+      :class="{focus: value, fixed: intersect}"
     >
       <input
         type="text"
@@ -21,7 +24,7 @@
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
-  props: ['count'],
+  props: ['count', 'intersect'],
 
   data: () => ({
     value: '',
@@ -42,6 +45,28 @@ export default {
 .search {
   width: 100%;
   padding: 40px 25px;
+
+  &.fixed {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 20;
+    padding: 15px 55px;
+    background-color: var(--default-c);
+    animation: fadeOut .2s linear;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .results-count {
