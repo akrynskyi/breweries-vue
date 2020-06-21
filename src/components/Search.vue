@@ -51,7 +51,7 @@ export default {
     top: 60px;
     left: 0;
     z-index: 20;
-    padding: 15px 55px;
+    padding: 30px 55px;
     background-color: var(--default-c);
     animation: fadeOut .2s linear;
   }

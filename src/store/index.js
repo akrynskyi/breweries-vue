@@ -1,35 +1,18 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import Feedbacks from './modules/feedbacks';
+import Breweries from './modules/breweries';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    breweries: [],
-    searchString: '',
+  state: {},
+  mutations: {},
+  actions: {},
+  getters: {},
+  modules: {
+    Feedbacks,
+    Breweries,
   },
-  mutations: {
-    updateBreweries(state, data) {
-      state.breweries = data;
-    },
-    updateSearchString(state, value) {
-      state.searchString = value;
-    },
-  },
-  actions: {
-    async getData({ commit }, perPage) {
-      const response = await fetch(`https://api.openbrewerydb.org/breweries?per_page=${perPage}`);
-      const data = await response.json();
-      commit('updateBreweries', data);
-    },
-  },
-  getters: {
-    data(state) {
-      return state.breweries;
-    },
-    searchTerm(state) {
-      return state.searchString;
-    },
-  },
-  modules: {},
 });

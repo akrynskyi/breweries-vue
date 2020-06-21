@@ -15,18 +15,54 @@
           </div>
       </div>
     </div>
-    <div class="info">
-      <div class="side-picture left">
-        <!-- <img src="@/assets/images/side-1.jpg" alt="side-picture"> -->
+
+    <div class="feedback-section feedback-section-wrap">
+      <h1 class="headline">
+        Feedbacks
+      </h1>
+
+      <div class="feedback-section__container">
+        <Card
+          v-for="fb of feedbacks"
+          :key="fb.id"
+          :feedback="fb"
+        ></Card>
+      </div>
+
+      <div class="feedback-section__form">
+        <div class="headline">
+          Leave your feedback
+        </div>
+
+        <FeedbackForm></FeedbackForm>
+
       </div>
     </div>
+
   </section>
 </template>
 
 <script>
+import Card from '@/components/Card.vue';
+import FeedbackForm from '@/components/FeedbackForm.vue';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'home',
   title: 'Breweries - Home',
+
+  data: () => ({
+
+  }),
+
+  computed: {
+    ...mapGetters(['feedbacks']),
+  },
+
+  components: {
+    Card,
+    FeedbackForm,
+  },
 };
 </script>
 
@@ -36,9 +72,33 @@ export default {
     height: calc(100vh - 60px);
   }
 
-  .info {
+  .feedback-section {
     position: relative;
     min-height: 100vh;
+    padding: 80px 0px;
+
+    &-wrap {
+      max-width: 740px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 25px;
+      padding: 80px 0px;
+      border-bottom: 1px solid var(--neutral-regular);
+    }
+
+    &__form {
+      margin-top: 80px;
+    }
+  }
+
+  .headline {
+    font-size: 56px;
+    color: var(--default-c)
   }
 
   .hero {
