@@ -17,7 +17,7 @@
 
     <div class="card__body">
       <p>
-        {{ feedback.text }}
+        {{ feedback.text | cutText }}
       </p>
     </div>
 

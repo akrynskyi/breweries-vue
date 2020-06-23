@@ -45,7 +45,7 @@
 <script>
 import Card from '@/components/Card.vue';
 import FeedbackForm from '@/components/FeedbackForm.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'home',
@@ -57,6 +57,14 @@ export default {
 
   computed: {
     ...mapGetters(['feedbacks']),
+  },
+
+  methods: {
+    ...mapActions(['localstorageGet']),
+  },
+
+  mounted() {
+    this.localstorageGet();
   },
 
   components: {
@@ -106,6 +114,17 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(to top, var(--bgc-two), rgba(255, 255, 255, 0));
+      z-index: 1;
+    }
   }
 
   .side {

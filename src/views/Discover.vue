@@ -17,7 +17,11 @@
             v-bind:key="item.key"
             v-bind:item="item"
             v-bind:idx="index"
+            v-bind:page="page"
           ></Post>
+
+          <Observer @intersect="load()"></Observer>
+
         </div>
         <p v-else class="placeholder">
           <span>Nothing found...</span>
@@ -31,6 +35,7 @@
 import Post from '@/components/Post.vue';
 import Loader from '@/components/Loader.vue';
 import Search from '@/components/Search.vue';
+import Observer from '@/components/Observer.vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
@@ -41,10 +46,12 @@ export default {
     loading: true,
     observer: null,
     intersect: false,
+    page: 1,
   }),
 
   computed: {
     ...mapGetters(['data', 'searchTerm']),
+
     filterData() {
       return this.data.map((item) => {
         const n = item.name.toLowerCase();
@@ -54,13 +61,14 @@ export default {
         return item;
       });
     },
+
     countSearchResults() {
       return this.filterData.reduce((total, current) => (current.match ? total + 1 : total), 0);
     },
   },
 
   methods: {
-    ...mapActions(['getData']),
+    ...mapActions(['getData', 'loadData']),
     ...mapMutations(['updateSearchString']),
 
     intersectionObs() {
@@ -78,10 +86,16 @@ export default {
 
       this.observer.observe(this.$refs.discoverContent);
     },
+
+    async load() {
+      this.page += 1;
+      await this.loadData({ page: this.page });
+      this.$router.replace({ query: { page: this.page } });
+    },
   },
 
   async mounted() {
-    await this.getData(50);
+    await this.getData({});
     this.loading = false;
     setTimeout(() => this.intersectionObs(), 0);
   },
@@ -95,6 +109,7 @@ export default {
     Post,
     Loader,
     Search,
+    Observer,
   },
 };
 </script>

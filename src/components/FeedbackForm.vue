@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
 
@@ -43,12 +43,12 @@ export default {
   }),
 
   methods: {
-    ...mapMutations(['createFeedback']),
+    ...mapActions(['localstorageSave']),
 
     create() {
       if (!this.name.trim() && !this.text.trim()) return;
 
-      this.createFeedback({
+      this.localstorageSave({
         id: Date.now(),
         author: this.name,
         date: new Date(),
@@ -69,7 +69,7 @@ export default {
 }
 
 .form-control {
-  margin-bottom: 25px;
+  margin-bottom: 40px;
 }
 
 .text-field {

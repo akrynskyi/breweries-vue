@@ -76,7 +76,8 @@ export default {
     ...mapActions(['getData']),
   },
   async mounted() {
-    await this.getData(50);
+    const { page } = this.$route.query;
+    await this.getData({ page });
     this.item = this.data.find((item) => item.id === +this.$route.params.id);
     this.loading = false;
   },

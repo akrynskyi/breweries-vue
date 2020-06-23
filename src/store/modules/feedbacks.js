@@ -31,8 +31,20 @@ export default {
     createFeedback(state, fb) {
       state.feedbacks.push(fb);
     },
+    fillFeedbacks(state, data) {
+      state.feedbacks = data;
+    },
   },
-  actions: {},
+  actions: {
+    localstorageSave({ commit, state }, fb) {
+      commit('createFeedback', fb);
+      localStorage.setItem('feedbacks', JSON.stringify(state.feedbacks));
+    },
+    localstorageGet({ commit }) {
+      const fbArray = localStorage.getItem('feedbacks') ? JSON.parse(localStorage.getItem('feedbacks')) : [];
+      commit('fillFeedbacks', fbArray);
+    },
+  },
   getters: {
     feedbacks(state) {
       return state.feedbacks;

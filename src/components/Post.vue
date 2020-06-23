@@ -3,7 +3,7 @@
     <div
       class="post__cover"
       :class="{active: item.match}"
-      @click="$router.push(`/detail/${name}/${item.id}`)"
+      @click="redirect()"
     >
       <div class="post__cover-center">
         <span>{{ item.name.charAt(0) }}</span>
@@ -22,13 +22,23 @@
 
 <script>
 export default {
-  props: ['item', 'idx'],
+  props: ['item', 'idx', 'page'],
 
   data() {
     return {
       name: this.item.name.trim().replace('/', '|'),
     };
   },
+
+  methods: {
+    redirect() {
+      this.$router.push({
+        path: `/detail/${this.name}/${this.item.id}`,
+        query: { page: this.page },
+      });
+    },
+  },
+
 };
 </script>>
 
