@@ -65,19 +65,27 @@ export default {
   title() {
     return `Breweries - ${this.$route.params.name}`;
   },
+
   data: () => ({
     item: {},
     loading: true,
   }),
+
   computed: {
     ...mapGetters(['data']),
   },
+
   methods: {
     ...mapActions(['getData']),
   },
+
   async mounted() {
     const { page } = this.$route.query;
-    await this.getData({ page });
+
+    if (!this.data.length) {
+      await this.getData({ page });
+    }
+
     this.item = this.data.find((item) => item.id === +this.$route.params.id);
     this.loading = false;
   },
@@ -134,7 +142,8 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--bgc-two);
+      // color: var(--bgc-two);
+      color: var(--neutral-regular);
       font-size: 56px;
       font-weight: 700;
     }

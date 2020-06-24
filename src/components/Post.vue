@@ -71,7 +71,8 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--bgc-two);
+      // color: var(--bgc-two);
+      color: var(--neutral-regular);
       font-size: 36px;
       font-weight: 700;
     }
@@ -82,7 +83,8 @@ export default {
     flex-direction: column;
     padding: 10px 0px;
     text-align: center;
-    color: var(--bgc-two);
+    // color: var(--bgc-two);
+    color: var(--neutral-regular);
   }
 
   &__meta {
@@ -90,6 +92,7 @@ export default {
     font-weight: 300;
 
     &-title {
+      color: var(--default-c);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

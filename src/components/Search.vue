@@ -7,16 +7,23 @@
       class="input-group"
       :class="{focus: value, fixed: intersect}"
     >
+
       <input
         type="text"
         class="input-group__input"
         @input="search()"
         v-model="value"
       />
+
       <span class="input-group__placeholder" data-placeholder="Filter by name"></span>
       <span class="results-count">{{count}}/{{data.length}}</span>
       <i class="fas fa-search"></i>
+
     </div>
+
+    <p v-if="isMatch" class="placeholder">
+      <span>Nothing found...</span>
+    </p>
   </div>
 </template>
 
@@ -29,11 +36,22 @@ export default {
   data: () => ({
     value: '',
   }),
+
   computed: {
-    ...mapGetters(['data']),
+    ...mapGetters(['data', 'searchTerm']),
+
+    isMatch() {
+      if (!this.count && this.searchTerm) {
+        return true;
+      }
+
+      return false;
+    },
   },
+
   methods: {
     ...mapMutations(['updateSearchString']),
+
     search() {
       this.updateSearchString(this.value.toLowerCase().trim());
     },
@@ -73,5 +91,12 @@ export default {
   margin-right: 15px;
   font-weight: 300;
   color: var(--neutral-secondary);
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  color: var(--neutral-secondary);
+  margin-top: 20px;
 }
 </style>

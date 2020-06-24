@@ -122,7 +122,7 @@ export default {
       left: 0;
       width: 100%;
       height: 200px;
-      background: linear-gradient(to top, var(--bgc-two), rgba(255, 255, 255, 0));
+      background: linear-gradient(to top, #1e212a, rgba(255, 255, 255, 0));
       z-index: 1;
     }
   }

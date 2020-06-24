@@ -1,15 +1,17 @@
 <template>
   <section class="discover view">
     <div class="wrapper">
+
       <Loader v-if="loading"></Loader>
+
       <main v-else>
         <Search
           :count="countSearchResults"
           :intersect="intersect"
         ></Search>
+
         <div
           class="content"
-          v-if="filterData.length"
           ref="discoverContent"
         >
           <Post
@@ -21,11 +23,10 @@
           ></Post>
 
           <Observer @intersect="load()"></Observer>
-
         </div>
-        <p v-else class="placeholder">
-          <span>Nothing found...</span>
-        </p>
+
+        <ScrollLoader v-if="isLoad"></ScrollLoader>
+
       </main>
     </div>
   </section>
@@ -34,6 +35,7 @@
 <script>
 import Post from '@/components/Post.vue';
 import Loader from '@/components/Loader.vue';
+import ScrollLoader from '@/components/ScrollLoader.vue';
 import Search from '@/components/Search.vue';
 import Observer from '@/components/Observer.vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
@@ -47,6 +49,7 @@ export default {
     observer: null,
     intersect: false,
     page: 1,
+    isLoad: false,
   }),
 
   computed: {
@@ -68,7 +71,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getData', 'loadData']),
+    ...mapActions(['getData']),
     ...mapMutations(['updateSearchString']),
 
     intersectionObs() {
@@ -88,14 +91,19 @@ export default {
     },
 
     async load() {
+      this.isLoad = true;
       this.page += 1;
-      await this.loadData({ page: this.page });
+      await this.getData({ page: this.page });
+      this.isLoad = false;
       this.$router.replace({ query: { page: this.page } });
     },
   },
 
   async mounted() {
-    await this.getData({});
+    if (!this.data.length) {
+      await this.getData({});
+    }
+
     this.loading = false;
     setTimeout(() => this.intersectionObs(), 0);
   },
@@ -108,6 +116,7 @@ export default {
   components: {
     Post,
     Loader,
+    ScrollLoader,
     Search,
     Observer,
   },
@@ -124,11 +133,5 @@ export default {
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   grid-row-gap: 20px;
-}
-
-.placeholder {
-  display: flex;
-  justify-content: center;
-  color: var(--neutral-secondary);
 }
 </style>

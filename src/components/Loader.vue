@@ -9,7 +9,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../node_modules/loaders.css/src/animations/ball-scale-ripple-multiple.scss";
+@import "~loaders.css/src/animations/ball-scale-ripple-multiple.scss";
 
 .loader-overlay {
   position: fixed;

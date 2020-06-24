@@ -35,13 +35,14 @@
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #697853;
-  box-shadow:
-    0 1.9px 2.1px rgba(0, 0, 0, 0.053),
-    0 4.7px 3px rgba(0, 0, 0, 0.077),
-    0 10.3px 6.8px rgba(0, 0, 0, 0.093),
-    0 30px 80px rgba(0, 0, 0, 0.1)
-  ;
+  // background-color: #697853;
+  background-color: var(--bgc-one);
+  // box-shadow:
+  //   0 1.9px 2.1px rgba(0, 0, 0, 0.053),
+  //   0 4.7px 3px rgba(0, 0, 0, 0.077),
+  //   0 10.3px 6.8px rgba(0, 0, 0, 0.093),
+  //   0 30px 80px rgba(0, 0, 0, 0.1)
+  // ;
   z-index: 20;
 
   &-wrapper {
