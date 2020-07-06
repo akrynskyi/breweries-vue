@@ -29,6 +29,14 @@
 
       </main>
     </div>
+
+    <button
+      class="btn circle"
+      v-if="intersect"
+      @click="scrollToTop()"
+    >
+      <i class="far fa-arrow-alt-circle-up"></i>
+    </button>
   </section>
 </template>
 
@@ -96,6 +104,10 @@ export default {
       await this.getData({ page: this.page });
       this.isLoad = false;
       this.$router.replace({ query: { page: this.page } });
+    },
+
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
   },
 

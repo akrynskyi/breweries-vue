@@ -19,10 +19,34 @@
     transform: translate(-50%, -50%) scale(1);
     transition: transform .75s, opacity .75s linear;
   }
+
   &:active::before {
     transition: 0s;
     opacity: 1;
     transform: translate(-50%, -50%) scale(0);
+  }
+
+  &.circle {
+    position: fixed;
+    bottom: 35px;
+    right: 60px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--accent-primary);
+    font-size: 18px;
+    color: var(--default-c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow:
+      0 0.2px 3.7px rgba(0, 0, 0, 0.139),
+      0 1.3px 10.1px rgba(0, 0, 0, 0.2),
+      0 3.8px 24.4px rgba(0, 0, 0, 0.261),
+      0 11px 81px rgba(0, 0, 0, 0.4)
+    ;
   }
 }
 
@@ -53,3 +77,5 @@
     margin-top: 20px;
   }
 }
+
+

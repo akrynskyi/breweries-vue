@@ -5,6 +5,10 @@
 @import "buttons.scss";
 @import "inputs.scss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 18px;

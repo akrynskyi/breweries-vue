@@ -39,12 +39,15 @@
       </div>
     </div>
 
+    <Footer></Footer>
+
   </section>
 </template>
 
 <script>
 import Card from '@/components/Card.vue';
 import FeedbackForm from '@/components/FeedbackForm.vue';
+import Footer from '@/components/Footer.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -70,6 +73,7 @@ export default {
   components: {
     Card,
     FeedbackForm,
+    Footer,
   },
 };
 </script>
